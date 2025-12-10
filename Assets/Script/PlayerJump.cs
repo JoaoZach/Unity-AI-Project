@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
+    [SerializeField] private PlayerMovementState playerMovementState;
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float jumpForce = 6;
@@ -42,6 +43,7 @@ public class PlayerJump : MonoBehaviour
 
         if (isGrounded)
         {
+            playerMovementState.SetMoveState(PlayerMovementState.MoveState.Jump);
             Jump(jumpForce);
         }
         else
@@ -97,6 +99,7 @@ public class PlayerJump : MonoBehaviour
         rigidBody.angularVelocity = 0;
         Jump(doubleJumpForce);
         canDoubleJump = false;
+        playerMovementState.SetMoveState(PlayerMovementState.MoveState.Double_Jump);
     }
 
     private void WallJump(int directions)
@@ -107,6 +110,7 @@ public class PlayerJump : MonoBehaviour
         rigidBody.angularVelocity = 0;
         playerMovement.wallJumpCooldown = wallJumpMovementCooldown;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
+        playerMovementState.SetMoveState(PlayerMovementState.MoveState.Wall_Jump);
     }
 
     private void Jump(float force)
