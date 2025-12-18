@@ -82,6 +82,54 @@ A classe EnemyBT trata-se da Behaviour Tree do inimigo, ou seja, o comportamento
 
 </details>
 
+# PlayerAttack
+Detecta quando o jogador pressiona E, dispara a animação de ataque e muda o estado de movimento para ataque; aplica dano aos inimigos dentro do alcance do ponto de ataque e notifica inimigos num raio próximo para reagirem; também desenha no editor uma indicação do alcance do ataque.
+
+<details>
+    <summary>Clique aqui para ver a função completa</summary>
+  
+  ```csharp 
+
+```
+
+</details>
+
+# PlayerJump
+Classe que trata toda a lógica de saltos do jogador:escuta a tecla de salto, determina se o jogador está no chão (raycast) ou encostado a uma parede e executa salto normal, duplo-salto ou wall‑jump conforme o caso; aplica forças ao Rigidbody2D, zera velocidades antes do salto quando necessário, controla um cooldown de movimento para wall‑jump e atualiza o PlayerMovementState para refletir o estado (Jump, Double_Jump, Wall_Jump). Também calcula dimensões do jogador (para raycasts) e garante que o duplo salto só ocorre uma vez até aterrissar.
+
+<details>
+    <summary>Clique aqui para ver a função completa</summary>
+  
+  ```csharp 
+
+```
+
+</details>
+
+# PlayerMovement
+Classe que trata o movimento horizontal do jogador: lê o eixo "Horizontal", aplica deslocamento multiplicado por speed via transform.Translate, atualiza a orientação do sprite (flip) comparando a posição atual com a do frame anterior e decrementa o wallJumpCooldown. Também calcula limites de ecrã e metade da largura do jogador no Start() e expõe animator/spriteRenderer para ligações no Inspector; nota que usa movimento por transformação direta em vez de física (Rigidbody2D).
+
+<details>
+    <summary>Clique aqui para ver a função completa</summary>
+  
+  ```csharp 
+
+```
+
+</details>
+
+# PlayerMovementState
+Classe que centraliza o estado de movimento do jogador: define o enum MoveState (Idle, Run, Attack, Jump, Fall, Double_Jump, Wall_Jump), determina o estado atual a cada frame com base na posição e na Rigidbody2D (velocidade vertical) e expõe SetMoveState para forçar transições. Para cada estado chama um handler que dispara a animação correspondente (usa o Animator) e notifica ouvintes via OnPlayerMoveStateChanged. Também tenta obter Rigidbody2D e Animator em Awake() se não estiverem atribuídos. Em resumo: liga a física/entrada ao sistema de animações e fornece um ponto único para mudar/consultar o estado de movimento.
+
+<details>
+    <summary>Clique aqui para ver a função completa</summary>
+  
+  ```csharp 
+
+```
+
+</details>
+
 # Créditos
 - Sprite do player: https://aamatniekss.itch.io/fantasy-knight-free-pixelart-animated-character
 - Sprite do Boss: https://darkpixel-kronovi.itch.io/mecha-golem-free
