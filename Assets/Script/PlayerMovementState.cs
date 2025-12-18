@@ -7,6 +7,7 @@ public class PlayerMovementState : MonoBehaviour
     {
         Idle,
         Run,
+        Attack,
         Jump,
         Fall,
         Double_Jump,
@@ -15,27 +16,34 @@ public class PlayerMovementState : MonoBehaviour
     public MoveState CurrentMoveState {  get; private set; }
 
     [SerializeField] private Animator animator;
-    [SerializeField] private Rigidbody2D rigidbody;
+    [SerializeField] private Rigidbody2D rb;
     private const string idleAnim = "Idle";
     private const string runAnim = "Run";
     private const string jumpAnim = "Jump";
     private const string fallAnim = "Fall";
     private const string doubleJumpAnim = "Double Jump";
     private const string wallJumpingAnim = "Wall Jump";
+    private const string attackAnim = "Attack";
     public static Action<MoveState> OnPlayerMoveStateChanged;
     private float xPosLastFrame;
 
+    private void Awake()
+    {
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (animator == null) animator = GetComponent<Animator>();
+    }
+
     private void Update()
     {
-        if (transform.position.x == xPosLastFrame && rigidbody.linearVelocity.y == 0)
+        if (transform.position.x == xPosLastFrame && rb.linearVelocity.y == 0)
         {
             SetMoveState(MoveState.Idle);
         }
-        else if (transform.position.x != xPosLastFrame && rigidbody.linearVelocity.y == 0)
+        else if (transform.position.x != xPosLastFrame && rb.linearVelocity.y == 0)
         {
             SetMoveState(MoveState.Run);
         }
-        else if (rigidbody.linearVelocity.y < 0)
+        else if (rb.linearVelocity.y < 0)
         {
             SetMoveState(MoveState.Fall);
         }
@@ -73,6 +81,10 @@ public class PlayerMovementState : MonoBehaviour
                 HandleWallJump();
                 break;
 
+            case MoveState.Attack:
+                HandleAttack();
+                break;
+
             default:
                 Debug.LogError($"Invalid movement state: {moveState}");
                 break;
@@ -97,6 +109,11 @@ public class PlayerMovementState : MonoBehaviour
     {
         animator.Play(jumpAnim);
 
+    }
+
+    private void HandleAttack()
+    {
+        animator.Play(attackAnim);
     }
 
     private void HandleFall()
