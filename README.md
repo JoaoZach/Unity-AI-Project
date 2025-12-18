@@ -21,6 +21,15 @@ Trabalho de Inteligência Artificial Aplicada a Jogos
 - Scene: Contem o cenário do jogo, sem ela o jogo não existe
 - Scripts: Contem os scripts do jogo, ou seja o código do jogo
 
+# Scripts
+- Enemy
+- EnemyBT
+- EnemyHitbox
+- PlayerAttack
+- PlayerJump
+- PlayerMovement
+- PlayerMovementState
+
 # Créditos
 - Sprite do player: https://aamatniekss.itch.io/fantasy-knight-free-pixelart-animated-character
 - Sprite do Boss: https://darkpixel-kronovi.itch.io/mecha-golem-free
