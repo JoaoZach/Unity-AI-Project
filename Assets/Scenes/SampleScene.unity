@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 116913798}
   - component: {fileID: 116913807}
   - component: {fileID: 116913808}
+  - component: {fileID: 116913809}
   - component: {fileID: 116913805}
   - component: {fileID: 116913804}
   m_Layer: 7
@@ -354,7 +355,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 116913804}
-  rigidbody: {fileID: 116913800}
+  rb: {fileID: 116913800}
+--- !u!114 &116913809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116913797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65425f0726728774ab3e0fbb38fc51a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 841308905}
+  attackRange: 1
+  damage: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &133559690
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,7 +617,7 @@ GameObject:
   - component: {fileID: 522079328}
   - component: {fileID: 522079327}
   - component: {fileID: 522079329}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,6 +878,37 @@ MonoBehaviour:
     pivotPointRoot: {fileID: 0}
     spreadOutCount: 1
   showGraphs: 1
+--- !u!1 &841308904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 841308905}
+  m_Layer: 0
+  m_Name: Attack Point (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &841308905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841308904}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: -2, z: -0.10446751}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1022923675
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +1038,7 @@ GameObject:
   - component: {fileID: 1493495891}
   - component: {fileID: 1493495894}
   - component: {fileID: 1493495895}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1162,6 +1212,12 @@ MonoBehaviour:
   - {fileID: 2038249716}
   - {fileID: 212093513}
   - {fileID: 133559691}
+  attackDistance: 1.5
+  stopDistance: 2
+  animator: {fileID: 0}
+  attackCooldown: 1
+  fleeDuration: 2
+  fleeDistance: 3
 --- !u!1 &1640867595
 GameObject:
   m_ObjectHideFlags: 0
@@ -23816,3 +23872,4 @@ SceneRoots:
   - {fileID: 133559691}
   - {fileID: 2038249716}
   - {fileID: 1331658320}
+  - {fileID: 841308905}
