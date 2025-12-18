@@ -4,8 +4,8 @@ Trabalho de Inteligência Artificial Aplicada a Jogos
 # (Titulo do Jogo)
 
 # Membros do Grupo
-João Faria - 25590
-Samuel Fernandes - 31470
+-João Faria - 25590
+-Samuel Fernandes - 31470
 
 # Metodos de Aplicação de IA escolhidos
 Path Finding: Usado para que o Boss encontre o melhor caminho para ir ter ao jogador
